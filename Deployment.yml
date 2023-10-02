@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-deploy
+  labels:
+    app: node-svr
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: node-svr
+  template:
+    metadata:
+      labels:
+        app: node-svr
+    spec:
+      terminationGracePeriodSeconds: 1
+      containers:
+        - name: app-ctr
+          image: 29062000123456/docker-simple-test:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8081
+
